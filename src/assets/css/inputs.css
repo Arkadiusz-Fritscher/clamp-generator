@@ -1,0 +1,32 @@
+input {
+  width: 100%;
+  background-color: transparent;
+  outline: none;
+  color: currentColor;
+}
+
+select {
+  outline: none;
+  background-color: inherit;
+}
+
+input::placeholder {
+  color: var(--color-gray);
+}
+
+select {
+  @apply text-caption text-clamp-dark-blue-200;
+}
+
+.input {
+  @apply h-8 rounded-[4px] bg-clamp-dark-blue-300 px-2;
+}
+
+.input:focus,
+.input:focus-within {
+  outline: 1px solid var(--color-active);
+}
+
+.label {
+  @apply text-caption font-medium text-clamp-dark-blue-200;
+}

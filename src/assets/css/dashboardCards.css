@@ -1,0 +1,10 @@
+.card__wrapper {
+  background-color: var(--color-dark-blue-300);
+  padding-inline: var(--base-element-gap-inline);
+}
+
+.card__spacer {
+  padding-top: var(--base-element-gap-top);
+  padding-bottom: var(--base-element-gap-bottom);
+  padding-inline: var(--base-element-gap-inline);
+}
