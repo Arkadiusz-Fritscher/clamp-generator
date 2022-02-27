@@ -16,6 +16,13 @@ module.exports = {
           lineHeight: "140%",
         },
       ],
+      lg: [
+        "var(--text-lg)",
+        {
+          letterSpacing: "1.1",
+          lineHeight: "150%",
+        },
+      ],
     },
     extend: {
       colors: {
@@ -25,6 +32,8 @@ module.exports = {
           "dark-blue-200": "var(--color-dark-blue-200)",
           "blue-white-50": "var(--color-blue-white-50)",
           "primary-gradient": "var(--color-primary-gradient)",
+          gray: "var(--color-gray)",
+          active: "var(--color-active)",
         },
       },
       spacing: {

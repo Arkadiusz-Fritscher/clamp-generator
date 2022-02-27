@@ -5,28 +5,26 @@
         label="Min. Fontsize"
         id="minFontsize"
         placeholder="16"
-        v-model:baseInput="store.minFontsize"
+        v-model:baseInput.number="store.minFontsize.value"
+        v-model:baseSelection="store.minFontsize.unit"
       />
 
       <BaseInputSelection
         label="Max. Fontsize"
         id="maxFontsize"
         placeholder="24"
-        v-model:baseInput="store.maxFontsize"
+        v-model:baseInput.number="store.maxFontsize.value"
+        v-model:baseSelection="store.maxFontsize.unit"
       />
     </form>
   </BaseCard>
 </template>
 
 <script setup>
-import { reactive } from "vue";
 import BaseCard from "../base/BaseCard.vue";
 import BaseInputSelection from "../base/BaseInputSelection.vue";
-
-const store = reactive({
-  minFontsize: "",
-  maxFontsize: "",
-});
+import { useStore } from "../../stores/store";
+const store = useStore();
 </script>
 
 <style scoped></style>

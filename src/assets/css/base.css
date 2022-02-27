@@ -6,6 +6,7 @@
   --color-primary-gradient: linear-gradient(90deg, #7961f2 0%, #5896e8 100%);
   --color-active: #7961f2;
   --color-gray: #46474d;
+  --color-error: #fb2b76;
 
   --base-padding-inline: 24px;
   --base-element-gap-inline: 16px;
@@ -16,6 +17,7 @@
 
   --text-caption: 0.875rem;
   --text-base: 1rem;
+  --text-lg: 1.25rem;
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -43,4 +45,20 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.error {
+  font-size: var(--text-caption);
+  color: var(--color-error);
+  line-height: 110%;
+}
+
+.draggable-item-grid {
+  display: grid;
+  grid-template-columns: 24px 1fr 3fr 1.6fr 1.6fr 2fr;
+  grid-template-rows: auto;
+  gap: 0px 4px;
+  grid-template-areas: "drag sufix title value1 value2 icon";
+  align-content: center;
+  align-items: center;
 }

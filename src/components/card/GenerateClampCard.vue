@@ -3,11 +3,15 @@
     <p class="py-base-gap-top text-caption text-clamp-dark-blue-200">
       * Fields optional
     </p>
-    <button class="btn">Generate clamp</button>
+    <button class="btn" @click="store.storeClap()">Generate clamp</button>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useStore } from "../../stores/store";
+
+const store = useStore();
+</script>
 
 <style scoped>
 .btn {

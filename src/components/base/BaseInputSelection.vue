@@ -1,6 +1,4 @@
 <script setup>
-import { ref } from "vue";
-
 defineEmits(["update:baseInput", "update:baseSelection"]);
 defineProps({
   baseInput: {
@@ -17,7 +15,7 @@ defineProps({
   },
   type: {
     type: String,
-    default: "text",
+    default: "number",
   },
   placeholder: {
     type: String,
@@ -33,13 +31,23 @@ defineProps({
       return { px: "px", rem: "rem" };
     },
   },
+
+  isValid: {
+    type: Boolean,
+    default: true,
+  },
+
+  error: {
+    type: String,
+    default: "",
+  },
 });
 </script>
 
 <template>
-  <div class="">
+  <div class="flex-auto">
     <label v-if="label" :for="id" class="label">{{ label }}</label>
-    <div class="input flex items-center gap-x-0.5">
+    <div class="input flex items-center gap-x-0.5" :class="{ error: !isValid }">
       <input
         class=""
         :type="type"
@@ -47,6 +55,8 @@ defineProps({
         :id="id"
         :value="baseInput"
         @input="$emit('update:baseInput', $event.target.value)"
+        max="999"
+        min="1"
       />
 
       <select
@@ -60,11 +70,10 @@ defineProps({
         </option>
       </select>
     </div>
+    <div v-if="!isValid" class="error mt-1">
+      {{ error }}
+    </div>
   </div>
 </template>
 
-<style scoped>
-.input__container {
-  /* flex: 0 0 6ch; */
-}
-</style>
+<style scoped></style>

@@ -12,15 +12,23 @@
 
       <!-- Center Content -->
       <div class="content-top">
-        <BaseCard title="Current Clamp" />
+        <CurrentClampCard />
       </div>
       <div class="content-bottom">
-        <BaseCard title="CSS Output" />
+        <BaseCard title="CSS Output">
+          <ul>
+            <li v-for="(clamp, i) in store.getStoredClamp" :key="i">
+              {{ clamp }}
+            </li>
+          </ul>
+        </BaseCard>
       </div>
 
       <!-- Right Menu -->
       <aside class="right-menu">
-        <BaseCard title="CSS Functions" />
+        <BaseCard title="CSS Functions">
+          <StoredValuesCard />
+        </BaseCard>
       </aside>
     </div>
   </main>
@@ -33,6 +41,11 @@ import FontsizeCard from "./card/FontsizeCard.vue";
 import CssVariablesCard from "./card/CssVariablesCard.vue";
 import TailwindConfigCard from "./card/TailwindConfigCard.vue";
 import GenerateClampCard from "./card/GenerateClampCard.vue";
+import { useStore } from "../stores/store";
+import StoredValuesCard from "./card/StoredValuesCard.vue";
+import CurrentClampCard from "./card/CurrentClampCard.vue";
+
+const store = useStore();
 </script>
 
 <style scoped>
@@ -40,12 +53,14 @@ import GenerateClampCard from "./card/GenerateClampCard.vue";
   display: grid;
   width: 100%;
   height: auto;
-  grid-template-columns: minmax(20%, 294px) minmax(auto, 1fr) minmax(20%, 294px);
-  grid-template-rows: auto 1fr;
+  grid-template-rows: 1fr;
+  grid-auto-rows: auto;
   gap: var(--base-grid-gap-y) var(--base-grid-gap-x);
   grid-template-areas:
-    "left-menu content-top right-menu"
-    "left-menu content-bottom right-menu";
+    "left-menu"
+    "content-top"
+    "right-menu"
+    "content-bottom";
 }
 
 .left-menu {
@@ -59,5 +74,18 @@ import GenerateClampCard from "./card/GenerateClampCard.vue";
 }
 .right-menu {
   grid-area: right-menu;
+}
+
+@media (min-width: 980px) {
+  .dashboard__grid {
+    grid-template-columns: minmax(15.25rem, 1fr) minmax(21.5rem, 2.5fr) minmax(
+        21.5rem,
+        1.5fr
+      );
+    grid-template-areas:
+      "left-menu content-top right-menu"
+      "left-menu content-bottom right-menu";
+    grid-template-rows: auto 1fr;
+  }
 }
 </style>

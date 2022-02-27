@@ -11,6 +11,7 @@ import TheDashboard from "./components/TheDashboard.vue";
 </template>
 
 <style>
+@import "./assets/css/reset.css";
 @import "./assets/css/trailwind.css";
 @import "./assets/css/base.css";
 @import "./assets/css/dashboardCards.css";

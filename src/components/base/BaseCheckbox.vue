@@ -1,5 +1,5 @@
 <template>
-  <label class="" :class="{ 'label-checked': changeState }">
+  <label class="hover:cursor-pointer" :class="{ 'label-checked': changeState }">
     <input
       type="checkbox"
       :checked="changeState"

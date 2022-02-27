@@ -5,32 +5,27 @@
         label="Min. Viewport"
         id="minViewport"
         placeholder="390"
-        v-model:baseInput="store.minViewport"
+        v-model:baseInput.number="store.minViewport.value"
+        v-model:baseSelection="store.minViewport.unit"
       />
 
       <BaseInputSelection
         label="Max. Viewport"
         id="maxViewport"
         placeholder="1440"
-        v-model:baseInput="store.maxViewport"
+        v-model:baseInput.number="store.maxViewport.value"
+        v-model:baseSelection="store.maxViewport.unit"
       />
     </form>
   </BaseCard>
 </template>
 
 <script setup>
-import { reactive, ref } from "vue";
 import BaseCard from "../base/BaseCard.vue";
 import BaseInputSelection from "../base/BaseInputSelection.vue";
+import { useStore } from "../../stores/store";
 
-const store = reactive({
-  minViewport: "",
-  maxViewport: "",
-});
+const store = useStore();
 </script>
 
-<style scoped>
-form > * {
-  flex: 1 1 0%;
-}
-</style>
+<style scoped></style>
