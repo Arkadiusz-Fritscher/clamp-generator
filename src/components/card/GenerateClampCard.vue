@@ -1,7 +1,7 @@
 <template>
   <div class="h-auto border border-clamp-dark-blue-300 p-base-gap-inline">
     <p class="py-base-gap-top text-caption text-clamp-dark-blue-200">
-      * Fields optional
+      * marked inputs are optional
     </p>
     <button class="btn" @click="store.storeClap()">Generate clamp</button>
   </div>

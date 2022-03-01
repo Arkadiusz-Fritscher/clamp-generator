@@ -1,5 +1,5 @@
 <template>
-  <BaseCard title="Tailwind Theme" checkbox>
+  <BaseCard title="Tailwind Theme">
     <form class="flex h-auto gap-x-4">
       <BaseInputSelection
         label="Letter spacing*"

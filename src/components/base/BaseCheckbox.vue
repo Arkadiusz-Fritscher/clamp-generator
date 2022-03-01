@@ -34,7 +34,7 @@ label {
   position: relative;
   height: var(--checkbox-height);
   width: calc(var(--checkbox-height) * 2);
-  outline: 2px solid var(--color-gray);
+  outline: 1px solid var(--color-gray);
   border-radius: var(--checkbox-height);
   background-color: var(--color-dark-blue-300);
   transition: all 0.2s ease-out;

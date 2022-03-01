@@ -41,6 +41,7 @@ defineProps({
 });
 
 const isChecked = ref(false);
+
 watch(isChecked, (value, oldvalue) => {
   if (value !== oldvalue) {
     emit("isChecked", value);

@@ -23,17 +23,63 @@ export const useStore = defineStore({
       value: 24,
       unit: "px",
     },
-    sufix: "",
-    title: "",
+    sufix: "text-",
+    title: "headline",
     letterSpacing: {
-      value: 24,
+      value: "",
       unit: "px",
     },
     lineHeight: {
-      value: 24,
+      value: "",
       unit: "px",
     },
-    variables: [],
+    variables: [
+      {
+        order: 1,
+        sufix: "text-",
+        title: "xs",
+        minViewport: { value: 390, unit: "px" },
+        maxViewport: { value: 1440, unit: "px" },
+        minFontsize: { value: 11, unit: "px" },
+        maxFontsize: { value: 14, unit: "px" },
+      },
+      {
+        order: 2,
+        sufix: "text-",
+        title: "sm",
+        minViewport: { value: 390, unit: "px" },
+        maxViewport: { value: 1440, unit: "px" },
+        minFontsize: { value: 14, unit: "px" },
+        maxFontsize: { value: 16, unit: "px" },
+      },
+      {
+        order: 3,
+        sufix: "text-",
+        title: "base",
+        minViewport: { value: 390, unit: "px" },
+        maxViewport: { value: 1440, unit: "px" },
+        minFontsize: { value: 16, unit: "px" },
+        maxFontsize: { value: 20, unit: "px" },
+      },
+      {
+        order: 4,
+        sufix: "text-",
+        title: "md",
+        minViewport: { value: 390, unit: "px" },
+        maxViewport: { value: 1440, unit: "px" },
+        minFontsize: { value: 18, unit: "px" },
+        maxFontsize: { value: 24, unit: "px" },
+      },
+      {
+        order: 5,
+        sufix: "text-",
+        title: "lg",
+        minViewport: { value: 390, unit: "px" },
+        maxViewport: { value: 1440, unit: "px" },
+        minFontsize: { value: 22, unit: "px" },
+        maxFontsize: { value: 32, unit: "px" },
+      },
+    ],
   }),
   getters: {
     doubleCount: (state) => state.counter * 2,
@@ -64,15 +110,29 @@ export const useStore = defineStore({
     },
 
     getStoredClamp() {
-      const strings = this.variables.map((entry) => {
-        return this.createClamp(
-          entry.minViewport,
-          entry.maxViewport,
-          entry.minFontsize,
-          entry.maxFontsize
-        ).string;
-      });
+      const strings = this.variables
+        .map((entry) => {
+          return {
+            values: {
+              ...entry,
+            },
+            string: this.createClamp(
+              entry.minViewport,
+              entry.maxViewport,
+              entry.minFontsize,
+              entry.maxFontsize
+            ).string,
+          };
+        })
+        .sort((a, b) => a.values.order - b.values.order);
+
       return strings;
+    },
+
+    getSortedVariables() {
+      return this.variables
+        .map((entry) => entry)
+        .sort((a, b) => a.order - b.order);
     },
   },
 
@@ -117,6 +177,7 @@ export const useStore = defineStore({
         const yAxisIntersection = -minViewportRem * slope + minFontsizeRem;
         const clamp = {
           values: {
+            order: this.variables.length + 1,
             sufix,
             title,
             minViewport,

@@ -15,13 +15,7 @@
         <CurrentClampCard />
       </div>
       <div class="content-bottom">
-        <BaseCard title="CSS Output">
-          <ul>
-            <li v-for="(clamp, i) in store.getStoredClamp" :key="i">
-              {{ clamp }}
-            </li>
-          </ul>
-        </BaseCard>
+        <CssFileCard />
       </div>
 
       <!-- Right Menu -->
@@ -44,6 +38,7 @@ import GenerateClampCard from "./card/GenerateClampCard.vue";
 import { useStore } from "../stores/store";
 import StoredValuesCard from "./card/StoredValuesCard.vue";
 import CurrentClampCard from "./card/CurrentClampCard.vue";
+import CssFileCard from "@/components/card/CssFileCard.vue";
 
 const store = useStore();
 </script>

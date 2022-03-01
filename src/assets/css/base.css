@@ -54,6 +54,7 @@ body {
 }
 
 .draggable-item-grid {
+  position: relative;
   display: grid;
   grid-template-columns: 24px 1fr 3fr 1.6fr 1.6fr 2fr;
   grid-template-rows: auto;

@@ -1,15 +1,15 @@
 <template>
-  <BaseCard title="CSS Variables" checkbox>
+  <BaseCard title="CSS Variables">
     <form class="flex h-auto gap-x-4">
       <BaseInput
-        label="Sufix"
+        label="Prefix*"
         id="sufix"
-        placeholder="--text-"
+        placeholder="text-"
         v-model:baseInput.trim="store.sufix"
       />
 
       <BaseInput
-        label="Title"
+        label="Name"
         id="title"
         placeholder="md"
         v-model:baseInput.trim="store.title"
