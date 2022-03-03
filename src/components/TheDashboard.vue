@@ -71,7 +71,7 @@ const store = useStore();
   grid-area: right-menu;
 }
 
-@media (min-width: 980px) {
+@media screen(mobile) {
   .dashboard__grid {
     grid-template-columns: minmax(15.25rem, 1fr) minmax(21.5rem, 2.5fr) minmax(
         21.5rem,

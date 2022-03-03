@@ -28,5 +28,5 @@ select {
 }
 
 .label {
-  @apply text-caption font-medium text-clamp-dark-blue-200;
+  @apply relative mb-1 block text-caption font-medium text-clamp-dark-blue-200;
 }

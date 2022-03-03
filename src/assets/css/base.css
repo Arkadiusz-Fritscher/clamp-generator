@@ -1,6 +1,7 @@
 :root {
   --color-dark-blue-400: #201e26;
   --color-dark-blue-300: #2b2c39;
+  --color-dark-blue-250: #3a3b4d;
   --color-dark-blue-200: #82828d;
   --color-blue-white-50: #e9eaf6;
   --color-primary-gradient: linear-gradient(90deg, #7961f2 0%, #5896e8 100%);
@@ -11,7 +12,7 @@
   --base-padding-inline: 24px;
   --base-element-gap-inline: 16px;
   --base-element-gap-top: 16px;
-  --base-element-gap-bottom: 24px;
+  --base-element-gap-bottom: 16px;
   --base-grid-gap-x: 2px;
   --base-grid-gap-y: 2px;
 

@@ -62,7 +62,7 @@ defineProps({
       <select
         :value="baseSelection"
         :id="id"
-        class="bg-inherit"
+        class="flex h-full items-center bg-inherit hover:cursor-pointer"
         @change="$emit('update:baseSelection', $event.target.value)"
       >
         <option v-for="(option, i) in options" :value="i" :key="i">

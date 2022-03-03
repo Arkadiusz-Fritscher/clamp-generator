@@ -1,6 +1,11 @@
 module.exports = {
   content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   theme: {
+    screens: {
+      mobile: { min: "980px" },
+      sm: { min: "1200px" },
+      // => @media (min-height: 800px) { ... }
+    },
     fontSize: {
       caption: [
         "var(--text-caption)",
@@ -29,6 +34,7 @@ module.exports = {
         clamp: {
           "dark-blue-400": "var(--color-dark-blue-400)",
           "dark-blue-300": "var(--color-dark-blue-300)",
+          "dark-blue-250": "var(--color-dark-blue-250)",
           "dark-blue-200": "var(--color-dark-blue-200)",
           "blue-white-50": "var(--color-blue-white-50)",
           "primary-gradient": "var(--color-primary-gradient)",

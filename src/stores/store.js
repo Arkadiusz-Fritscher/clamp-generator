@@ -36,6 +36,7 @@ export const useStore = defineStore({
     variables: [
       {
         order: 1,
+        id: "001",
         sufix: "text-",
         title: "xs",
         minViewport: { value: 390, unit: "px" },
@@ -45,6 +46,7 @@ export const useStore = defineStore({
       },
       {
         order: 2,
+        id: "002",
         sufix: "text-",
         title: "sm",
         minViewport: { value: 390, unit: "px" },
@@ -54,6 +56,7 @@ export const useStore = defineStore({
       },
       {
         order: 3,
+        id: "003",
         sufix: "text-",
         title: "base",
         minViewport: { value: 390, unit: "px" },
@@ -63,6 +66,7 @@ export const useStore = defineStore({
       },
       {
         order: 4,
+        id: "004",
         sufix: "text-",
         title: "md",
         minViewport: { value: 390, unit: "px" },
@@ -72,6 +76,7 @@ export const useStore = defineStore({
       },
       {
         order: 5,
+        id: "005",
         sufix: "text-",
         title: "lg",
         minViewport: { value: 390, unit: "px" },
@@ -83,6 +88,15 @@ export const useStore = defineStore({
   }),
   getters: {
     doubleCount: (state) => state.counter * 2,
+
+    generateUid() {
+      return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
+        (
+          c ^
+          (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
+        ).toString(16)
+      );
+    },
 
     validatedValues() {
       const values = [
@@ -201,7 +215,34 @@ export const useStore = defineStore({
     storeClap() {
       if (this.validatedValues && this.title !== "") {
         const { values, string } = this.createClamp();
-        this.variables.push(JSON.parse(JSON.stringify(values)));
+        this.variables.push(
+          JSON.parse(JSON.stringify({ id: this.generateUid, ...values }))
+        );
+      }
+    },
+
+    changeVariables(newValues) {
+      const storedIndex = this.variables.findIndex(
+        (entry) => entry.id === newValues.id
+      );
+      const variables = this.variables[storedIndex];
+
+      for (const [key, entry] of Object.entries(newValues)) {
+        if (typeof entry === "object") {
+          const { value, unit } = entry;
+
+          if (variables[key].value !== value) {
+            variables[key].value = value;
+          }
+
+          if (variables[key].unit !== unit) {
+            variables[key].unit = unit;
+          }
+        } else {
+          if (variables[key] !== entry) {
+            variables[key] = entry;
+          }
+        }
       }
     },
   },

@@ -18,10 +18,11 @@
     >
       <BaseDraggableCard
         v-for="entry in store.getSortedVariables"
-        draggable="true"
         @dragstart="dragStart($event, entry.order)"
-        :key="entry.order"
-        :id="entry.order"
+        :key="entry.id"
+        :id="entry.id"
+        :order="entry.order"
+        :is-dragging="isDragging"
         :sufix="entry.sufix ? entry.sufix : ''"
         :title="entry.title ? entry.title : ''"
         :value1="entry.minFontsize.value + entry.minFontsize.unit"
@@ -32,49 +33,64 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
 import { useStore } from "../../stores/store";
 import BaseDraggableCard from "../base/BaseDraggableCard.vue";
 
 const store = useStore();
+const isDragging = ref(false);
 
 const dragStart = (event, order) => {
+  isDragging.value = true;
   event.dataTransfer.dropEffect = "move";
   event.dataTransfer.effectAllowed = "move";
   event.dataTransfer.setData("position", order);
 
-  const dragElement = event.target.dataset.order
-    ? event.target
-    : event.target.closest("[data-order]");
-
-  dragElement.classList.add("grabbed");
+  const dragElement = event.target.closest("[data-element]");
+  dragElement?.classList.contains("grabbed") === false
+    ? dragElement?.classList.add("grabbed")
+    : "";
 };
 
 const dragEnter = (event) => {
   const enteredElement = event.target.closest("[data-order]");
-  enteredElement?.classList.add("over");
+
+  enteredElement?.classList.contains("over") === false
+    ? enteredElement.classList.add("over")
+    : "";
 };
 
 const dragLeave = (event) => {
   const leaveElement = event.target.closest("[data-order]");
-  leaveElement?.classList.remove("over");
+
+  leaveElement?.classList.contains("over")
+    ? leaveElement.classList.remove("over")
+    : "";
 };
 
 const dropHandler = (event) => {
   event.dataTransfer.dropEffect = "move";
 
   const startOrder = event.dataTransfer.getData("position");
-  const startElement = document.querySelector(`[data-order = "${startOrder}"]`);
+  const startElement = document.querySelector(`[data-order='${startOrder}']`);
   const dropEndElement = event.target.closest("[data-order]");
   const endOrder = dropEndElement?.dataset?.order;
 
-  startElement?.classList?.remove("grabbed");
-  dropEndElement?.classList?.remove("over");
-
-  console.log("drop....");
+  isDragging.value = false;
 
   if (startOrder && endOrder) {
     swapPosition(+startOrder, +endOrder);
   }
+
+  dropEndElement?.classList.contains("over")
+    ? dropEndElement.classList.remove("over")
+    : "";
+
+  const child = startElement.querySelector("[data-element]");
+
+  child?.classList.contains("grabbed")
+    ? child?.classList.remove("grabbed")
+    : "";
 };
 
 const swapPosition = (oldPos, newPos) => {
@@ -85,8 +101,6 @@ const swapPosition = (oldPos, newPos) => {
     oldPos: JSON.parse(JSON.stringify(dragElement.order)),
     newPos: JSON.parse(JSON.stringify(dropElement.order)),
   };
-
-  console.log(pos);
 
   dragElement.order = pos.newPos;
   dropElement.order = pos.oldPos;
@@ -112,19 +126,5 @@ const swapPosition = (oldPos, newPos) => {
 .icon {
   grid-area: icon;
   justify-self: end;
-}
-
-.over {
-  @apply -translate-x-1  opacity-40;
-  cursor: grabbing;
-}
-
-.grabbed {
-  @apply bg-clamp-active;
-  cursor: grabbing;
-}
-
-.grabbed:active {
-  cursor: grabbing;
 }
 </style>
