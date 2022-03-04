@@ -3,7 +3,7 @@
     <p class="py-base-gap-top text-caption text-clamp-dark-blue-200">
       * marked inputs are optional
     </p>
-    <button class="btn" @click="store.storeClap()">Generate clamp</button>
+    <button class="btn" @click="submit">Generate clamp</button>
   </div>
 </template>
 
@@ -11,6 +11,9 @@
 import { useStore } from "../../stores/store";
 
 const store = useStore();
+const submit = () => {
+  store.storeClap();
+};
 </script>
 
 <style scoped>

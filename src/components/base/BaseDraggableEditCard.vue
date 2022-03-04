@@ -57,8 +57,13 @@ const element = store.getStoredClamp.find(
 
 const newValues = reactive(JSON.parse(JSON.stringify(element.values)));
 
-const submitChanges = () => {
+const submitChanges = (event) => {
   store.changeVariables(JSON.parse(JSON.stringify(newValues)));
+  store.addMessage({
+    message: "Changes Save",
+    type: "success",
+    pos: { x: event.pageX, y: event.pageY },
+  });
 };
 </script>
 

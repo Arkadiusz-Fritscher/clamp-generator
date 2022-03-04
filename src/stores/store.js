@@ -85,9 +85,18 @@ export const useStore = defineStore({
         maxFontsize: { value: 32, unit: "px" },
       },
     ],
+
+    message: {
+      message: "",
+      type: "",
+      pos: { x: "", y: "" },
+    },
   }),
+
   getters: {
-    doubleCount: (state) => state.counter * 2,
+    getMessage() {
+      return this.message;
+    },
 
     generateUid() {
       return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
@@ -151,6 +160,39 @@ export const useStore = defineStore({
   },
 
   actions: {
+    copyClamp(id, { x, y }) {
+      const clamp = this.getStoredClamp.find((entry) => entry.values.id === id);
+
+      navigator.clipboard.writeText(clamp.string).then(
+        () => {
+          this.addMessage({
+            message: "Value copy",
+            type: "success",
+            pos: { x, y },
+          });
+        },
+        () => {
+          this.addMessage({
+            message: "Copy fail",
+            type: "error",
+            pos: { x, y },
+          });
+        }
+      );
+    },
+
+    addMessage(message) {
+      this.message.message = message.message;
+      this.message.type = message.type;
+      this.message.pos = message.pos;
+
+      setTimeout(() => {
+        this.message.message = "";
+        this.message.type = "";
+        this.message.pos = { x: "", y: "" };
+      }, 400);
+    },
+
     pxToRem(px) {
       return px / this.baseFont.value;
     },

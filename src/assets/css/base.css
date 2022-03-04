@@ -8,6 +8,7 @@
   --color-active: #7961f2;
   --color-gray: #46474d;
   --color-error: #fb2b76;
+  --color-success: rgba(56, 210, 127, 1);
 
   --base-padding-inline: 24px;
   --base-element-gap-inline: 16px;

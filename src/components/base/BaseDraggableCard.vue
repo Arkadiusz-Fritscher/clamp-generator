@@ -14,7 +14,7 @@
       <div class="value2">{{ value2 }}</div>
       <div class="icon">
         <div class="flex items-center gap-x-2 text-clamp-dark-blue-200">
-          <IconCopy class="h-5 w-5 hover:cursor-pointer" />
+          <IconCopy class="h-5 w-5 hover:cursor-pointer" @click="copyClamp" />
           <IconEdit
             class="h-5 w-5 hover:cursor-pointer"
             @click="() => (isEditOpen = !isEditOpen)"
@@ -32,7 +32,9 @@ import IconCopy from "../icons/IconCopy.vue";
 import IconEdit from "../icons/IconEdit.vue";
 import BaseDraggableEditCard from "./BaseDraggableEditCard.vue";
 import { computed, onUpdated, ref, watch } from "vue";
+import { useStore } from "../../stores/store";
 
+const store = useStore();
 const props = defineProps({
   sufix: {
     type: String,
@@ -69,6 +71,10 @@ const isEditOpen = ref(false);
 onUpdated(() => {
   if (props.isDragging) isEditOpen.value = false;
 });
+
+const copyClamp = (event) => {
+  store.copyClamp(props.id, { x: event.pageX, y: event.pageY });
+};
 </script>
 
 <style scoped>
@@ -93,7 +99,7 @@ onUpdated(() => {
 }
 
 [data-order] {
-  transition: all 0.3s ease-out;
+  transition: all 0.2s ease-out;
 }
 
 .over {

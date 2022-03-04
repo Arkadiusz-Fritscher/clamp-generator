@@ -40,6 +40,8 @@ module.exports = {
           "primary-gradient": "var(--color-primary-gradient)",
           gray: "var(--color-gray)",
           active: "var(--color-active)",
+          error: "var(--color-error)",
+          success: "var(--color-success)",
         },
       },
       spacing: {

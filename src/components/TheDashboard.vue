@@ -35,12 +35,9 @@ import FontsizeCard from "./card/FontsizeCard.vue";
 import CssVariablesCard from "./card/CssVariablesCard.vue";
 import TailwindConfigCard from "./card/TailwindConfigCard.vue";
 import GenerateClampCard from "./card/GenerateClampCard.vue";
-import { useStore } from "../stores/store";
 import StoredValuesCard from "./card/StoredValuesCard.vue";
 import CurrentClampCard from "./card/CurrentClampCard.vue";
 import CssFileCard from "@/components/card/CssFileCard.vue";
-
-const store = useStore();
 </script>
 
 <style scoped>

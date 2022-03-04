@@ -1,10 +1,12 @@
 <script setup>
 import TheHeader from "./components/TheHeader.vue";
 import TheDashboard from "./components/TheDashboard.vue";
+import BaseMessageContainer from "@/components/base/BaseMessageContainer.vue";
 </script>
 
 <template>
-  <div class="flex min-h-screen flex-col">
+  <div class="relative flex min-h-screen flex-col">
+    <BaseMessageContainer />
     <TheHeader />
     <TheDashboard class="flex-grow" />
   </div>
