@@ -8,7 +8,7 @@
       <div class="text-clamp-dark-blue-200">
         <IconGrab />
       </div>
-      <div class="sufix" ref="sufix">{{ sufix }}</div>
+      <div class="sufix">{{ sufix }}</div>
       <div class="title">{{ title }}</div>
       <div class="value1">{{ value1 }}</div>
       <div class="value2">{{ value2 }}</div>

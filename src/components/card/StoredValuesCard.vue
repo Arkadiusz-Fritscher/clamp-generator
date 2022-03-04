@@ -23,8 +23,8 @@
         :id="entry.id"
         :order="entry.order"
         :is-dragging="isDragging"
-        :sufix="entry.sufix ? entry.sufix : ''"
-        :title="entry.title ? entry.title : ''"
+        :sufix="entry.sufix"
+        :title="entry.title"
         :value1="entry.minFontsize.value + entry.minFontsize.unit"
         :value2="entry.maxFontsize.value + entry.maxFontsize.unit"
       />
